@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import Layout from '../components/Layout'
 
 export default function Home() {
   return (
-    <div className="container">
+    <Layout>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -46,6 +47,7 @@ export default function Home() {
             </p>
           </a>
         </div>
+
       </main>
 
       <footer>
@@ -204,6 +206,6 @@ export default function Home() {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
+    </Layout>
   )
 }
