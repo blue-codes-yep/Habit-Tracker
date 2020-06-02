@@ -1,17 +1,29 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import { withApollo } from '../lib/apollo'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
-export default function Home() {
+const HELLO_QUERY = gql`
+  query HelloQuery {
+    sayHello
+}
+`
+
+function Home() {
+  const { data, loading, error } = useQuery(HELLO_QUERY)
+  if (loading) return <div />
+  console.log(data);
   return (
     <Layout>
       <Head>
-        <title>Create Next App</title>
+        <title> Habit Tracker</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          {data.sayHello}
         </h1>
 
         <p className="description">
@@ -209,3 +221,5 @@ export default function Home() {
     </Layout>
   )
 }
+
+export default withApollo(Home);
